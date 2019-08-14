@@ -15,9 +15,9 @@ extern "C" {
         return ptr;
     }
 
-    void osk_gadget_magic(void* self) {
+    void osk_gadget_getScaleValue(void* self) {
         OSKGadget *og = reinterpret_cast<OSKGadget *>(self);
-        og->magic();
+        og->getScaleValue();
     }
 
     void destroy_osk_gadget(void* self) {
