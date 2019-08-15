@@ -1,7 +1,10 @@
 #include "include/lib_osk_gadget.h" 
 // include vs. import
 
-void OSKGadget::getScaleValue() {
+#include <iostream>
+#include <new>
+
+float OSKGadget::getScaleValue() {
     return scaleValue_;
 }
 

@@ -1,12 +1,18 @@
 #ifndef lib_osk_gadget_h_
 #define lib_osk_gadget_h_
 
+#include <stddef.h>
+#include <stdint.h>
+
 #ifdef __cplusplus
+
     class OSKGadget {
     public:
-        OSKGadget(int me) : me_(me) {}
+        OSKGadget(float initialWeight) : scaleValue_(initialWeight) {}
         float getScaleValue();
+        
         float scaleValue_;
+        float scaleCalibration_;
     };
 
 extern "C" {
@@ -22,3 +28,4 @@ void destroy_osk_gadget(void* self);
 #endif //__cplusplus
 
 #endif // lib_osk_gadget_h_
+
