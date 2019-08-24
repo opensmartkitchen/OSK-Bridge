@@ -11,6 +11,13 @@ OSKgadget::~OSKgadget() {
 
 // getScaleWeight
 float OSKgadget::getScaleWeight() {
+    if (scaleWeigth > 1.0f) {
+       scaleWeigth = 0;
+    }
+    else {
+       scaleWeigth = 2.2f; 
+    }
+
     return scaleWeigth;
 }
 
