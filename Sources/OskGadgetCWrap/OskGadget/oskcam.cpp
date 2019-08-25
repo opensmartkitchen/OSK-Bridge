@@ -26,6 +26,15 @@ bool OSKcam::run(OSKcam *me){
         break;
     }
 
+        if(me->getTakeSnapshot()){
+            std::cout << "Saving Cam Snapshot" << std::endl;
+            std::string fileName = me->getSaveDirPath()
+                    + std::to_string(me->getTimeSnapshot())
+                    + "_image.png";
+            cv::imwrite(fileName,img);
+            me->setTakeSnapshot(false,0);
+        }
+
     cv::imshow("CSI Camera",img);
     int keycode = cv::waitKey(30) & 0xff ;
         if (keycode == 27) break ;
@@ -56,3 +65,13 @@ bool OSKcam::initCam(){
         return true;
     }
 }
+
+void OSKcam::setTakeSnapshot(bool toSet, long time){
+    if(DEBUG_SNAPSHOT){
+        std::cout << "setTakeSnapshot CALLED" << std::endl;
+    }
+    m_takeSnapshot = toSet;
+    m_timeSnapshot = time;
+}
+bool OSKcam::getTakeSnapshot(){return m_takeSnapshot;}
+long OSKcam::getTimeSnapshot(){return m_timeSnapshot;}

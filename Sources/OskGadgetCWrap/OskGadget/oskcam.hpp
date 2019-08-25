@@ -3,8 +3,12 @@
 
 #include <string>
 #include <opencv2/opencv.hpp>
+#include <chrono>
+#include <ctime>
 
 #include "oskdevice.hpp"
+
+#define DEBUG_SNAPSHOT true
 
 class OSKdevice;
 
@@ -16,6 +20,15 @@ public:
     static bool run(OSKcam *me);
     void start();
     cv::VideoCapture* getVidCap();
+    /**
+     * @brief getImageNum
+     * @return The number of the image at last weight change
+     */
+    int getImageNum();
+    void setTakeSnapshot(bool toSet, long time);
+protected:
+    bool getTakeSnapshot();
+    long getTimeSnapshot();
 private:
     bool initCam();
 
@@ -26,6 +39,10 @@ private:
     int m_displayHeight = 720;
     int m_framerate = 60;
     int m_flipMethod = 0;
+
+    //Snapshot Parameters
+    std::atomic<bool> m_takeSnapshot {false};
+    std::atomic<long> m_timeSnapshot{0};
 
     //Camera Capture Object
     cv::VideoCapture* m_vidCap = NULL;

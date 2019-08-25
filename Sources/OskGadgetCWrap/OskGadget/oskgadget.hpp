@@ -4,30 +4,29 @@
 #include <string>
 #include <vector>
 
+#include "oskdevice.hpp"
+#include "oskloadcell.hpp"
+#include "oskcam.hpp"
+
 class OSKdevice;
+class OSKloadcell;
+class OSKcam;
 
 class OSKgadget
 {
 public:
     OSKgadget();
-    ~OSKgadget();
-    
-    // Data Members
-    
-    // Data Functions()
-    float getScaleWeight();
+    OSKgadget(std::string id, std::string logDirPath);
+    bool init();
+    void run();
+    long getScaleLastTimestamp();
     
 private:
-    // Data Members
+    std::string m_logDirPath;
     std::string m_id;
     std::vector<OSKdevice*> m_device;
-    
-    // Data Members: Scale
-    float scaleWeigth;
-    // items
-
-    // Data Functions()
-    
+    OSKloadcell* m_loadCell = NULL;
+    OSKcam* m_cam = NULL;
 };
 
 #endif // OSKGADGET_HPP

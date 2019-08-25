@@ -1,27 +1,41 @@
 #include "oskgadget.hpp"
 
-OSKgadget::OSKgadget() 
+OSKgadget::OSKgadget()
 {
-    scaleWeigth = 2.2f; // :TODO:!!!: temporary test value of 2.2 pounds.
+    m_id = "osk-squirrel";
+    m_logDirPath = "/var/spool/osk-data/public/";
 }
 
-OSKgadget::~OSKgadget() {
-    // nothing to shutdown yet.
+OSKgadget::OSKgadget(std::string id, std::string logDirPath)
+{
+    m_id = id;
+    m_logDirPath = logDirPath;
 }
 
-// getScaleWeight
-float OSKgadget::getScaleWeight() {
-    if (scaleWeigth > 1.0f) {
-       scaleWeigth = 0;
+bool OSKgadget::init(){
+    //Check if Log Path is Valid
+    if(m_logDirPath ==  ""){
+        return false;
+}
+
+    //Initialize the Load Cell
+    m_loadCell = new OSKloadcell("LoadCell",5);
+    m_loadCell->setSaveDirPath(m_logDirPath);
+
+    //Initialize the Camera
+    m_cam = new OSKcam("Camera",30);
+    m_cam->setSaveDirPath(m_logDirPath);
+    m_loadCell->setCam(m_cam);
+
+    return true;
     }
-    else {
-       scaleWeigth = 2.2f; 
+
+void OSKgadget::run(){
+    //Start Devices!
+    m_cam->start();
+    m_loadCell->start();
     }
 
-    return scaleWeigth;
+long OSKgadget::getScaleLastTimestamp(){
+    return m_loadCell->getLastChangeTimestamp();
 }
-
-// getScaleImage
-
-// getScaleItems 
-

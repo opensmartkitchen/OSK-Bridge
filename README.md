@@ -47,7 +47,14 @@ swift build \
   -Xlinker -lopencv_core \
   -Xlinker -lopencv_highgui \
   -Xlinker -lopencv_videoio \
-  -Xlinker -L/opt/opencv/current/lib   
+  -Xlinker -lopencv_imgproc \
+  -Xlinker -lopencv_video \
+  -Xlinker -L/opt/opencv/current/lib \
+  -Xlinker -L/usr/local/lib
+
+#LIBS += -L/usr/local/lib
+
+LIBS += -lopencv_core -lopencv_highgui -lopencv_videoio -lopencv_imgproc -lopencv_video
 
 # build release:
 swift build -c release -Xcxx -std=c++11 
