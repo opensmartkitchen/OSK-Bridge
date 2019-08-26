@@ -40,17 +40,50 @@ swift build -Xcxx -std=c++11
 swift build -Xcxx -std=c++11 -Xcxx -stdlib=libc++
 swift build -Xcxx -std=gnu++11
 
+## macOS
 swift build \
   -Xcxx -std=c++11 \
+  -Xcxx -stdlib=libc++ \
   -Xcxx -I/opt/opencv/current/include/opencv4 \
   -Xlinker -lpthread \
   -Xlinker -lopencv_core \
   -Xlinker -lopencv_highgui \
   -Xlinker -lopencv_videoio \
   -Xlinker -lopencv_imgproc \
+  -Xlinker -lopencv_imgcodecs \
   -Xlinker -lopencv_video \
   -Xlinker -L/opt/opencv/current/lib \
   -Xlinker -L/usr/local/lib
+
+## Ubuntu
+swift build \
+    -Xcxx -std=c++11 \
+    -Xcxx -I/opt/opencv/current/include/opencv4 \
+    -Xlinker -lpthread \
+    -Xlinker -lopencv_core \
+    -Xlinker -lopencv_highgui \
+    -Xlinker -lopencv_videoio \
+    -Xlinker -lopencv_imgproc \
+    -Xlinker -lopencv_imgcodecs \
+    -Xlinker -lopencv_video \
+    -Xlinker -L/opt/opencv/current/lib \
+    -Xlinker -L/usr/local/lib
+
+swift run \
+    -Xcxx -std=c++11 \
+    -Xcxx -I/opt/opencv/current/include/opencv4 \
+    -Xlinker -lpthread \
+    -Xlinker -lopencv_core \
+    -Xlinker -lopencv_highgui \
+    -Xlinker -lopencv_videoio \
+    -Xlinker -lopencv_imgproc \
+    -Xlinker -lopencv_imgcodecs \
+    -Xlinker -lopencv_video \
+    -Xlinker -L/opt/opencv/current/lib \
+    -Xlinker -L/usr/local/lib
+
+#     -Xcxx -stdlib=libc++ \
+
 
 #LIBS += -L/usr/local/lib
 
