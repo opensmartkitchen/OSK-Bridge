@@ -12,6 +12,9 @@ extern "C" {
     void * oskGadgetCreate();
     void oskGadgetDestroy(void* oskGadget);
     
+    void oskGadgetInit(void* oskGadget);
+    void oskGadgetRun(void* oskGadget);
+        
     // Class Methods()
     //float oskGadgetGetScaleWeight(void* oskGadget);
     long oskGadgetGetLastTimestamp(void* oskGadget);

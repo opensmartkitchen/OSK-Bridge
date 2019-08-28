@@ -18,6 +18,15 @@ extern "C" {
         ptr->~OSKgadget();
     }
 
+    void oskGadgetInit(void* oskGadget) {
+        OSKgadget* ptr = (OSKgadget *)oskGadget;
+        return ptr->init();
+    }
+    void oskGadgetRun(void* oskGadget) {
+        OSKgadget* ptr = (OSKgadget *)oskGadget;
+        return ptr->run();
+    }
+
     // //Class Methods()
     //float oskGadgetGetScaleWeight(void* oskGadget) {
     //    //OSKgadget* ptr = static_cast<OSKgadget *>(oskGadget);
