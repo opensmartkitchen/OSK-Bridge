@@ -16,7 +16,7 @@ bool OSKgadget::init(){
     //Check if Log Path is Valid
     if(m_logDirPath ==  ""){
         return false;
-}
+    }
 
     //Initialize the Load Cell
     m_loadCell = new OSKloadcell("LoadCell",5);

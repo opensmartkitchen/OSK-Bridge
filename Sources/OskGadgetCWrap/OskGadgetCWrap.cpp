@@ -18,13 +18,13 @@ extern "C" {
         ptr->~OSKgadget();
     }
 
-    void oskGadgetInit(void* oskGadget) {
+    bool oskGadgetInit(void* oskGadget) {
         OSKgadget* ptr = (OSKgadget *)oskGadget;
         return ptr->init();
     }
     void oskGadgetRun(void* oskGadget) {
         OSKgadget* ptr = (OSKgadget *)oskGadget;
-        return ptr->run();
+        ptr->run();
     }
 
     // //Class Methods()

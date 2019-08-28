@@ -42,6 +42,7 @@ swift build -Xcxx -std=gnu++11
 
 ## macOS
 swift build \
+  -Xcc -std=c11 \
   -Xcxx -std=c++11 \
   -Xcxx -stdlib=libc++ \
   -Xcxx -I/opt/opencv/current/include/opencv4 \
@@ -57,6 +58,7 @@ swift build \
 
 ## Ubuntu
 swift build \
+    -Xcc -std=c11 \
     -Xcxx -std=c++11 \
     -Xcxx -I/opt/opencv/current/include/opencv4 \
     -Xlinker -lpthread \
@@ -70,6 +72,7 @@ swift build \
     -Xlinker -L/usr/local/lib
 
 swift run \
+    -Xcc -std=c11 \
     -Xcxx -std=c++11 \
     -Xcxx -I/opt/opencv/current/include/opencv4 \
     -Xlinker -lpthread \
