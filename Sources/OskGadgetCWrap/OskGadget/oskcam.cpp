@@ -6,6 +6,11 @@ OSKcam::OSKcam(std::string id, int freq) : OSKdevice(id, freq)
 }
 
 OSKcam::~OSKcam(){
+    if(OSK_HEADLESS) {
+        std::cout<<"Initializing OSKcam in OSK_HEADLESS mode."<<std::endl;
+    } else {
+        std::cout<<"Initializing OSKcam in windowing mode."<<std::endl;
+    }
     if(m_vidCap != NULL){
         m_vidCap->release();
     }
