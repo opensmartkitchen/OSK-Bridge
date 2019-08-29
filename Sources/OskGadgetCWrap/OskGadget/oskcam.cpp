@@ -22,9 +22,9 @@ bool OSKcam::run(OSKcam *me){
     while(true)
     {
         if (!me->getVidCap()->read(img)) {
-        std::cout<<"Capture read error"<<std::endl;
-        break;
-    }
+            std::cout<<"Capture read error"<<std::endl;
+            break;
+        }
 
         if(me->getTakeSnapshot()){
             std::cout << "Saving Cam Snapshot" << std::endl;
@@ -35,8 +35,10 @@ bool OSKcam::run(OSKcam *me){
             me->setTakeSnapshot(false,0);
         }
 
-    cv::imshow("CSI Camera",img);
-    int keycode = cv::waitKey(30) & 0xff ;
+        if(!OSK_HEADLESS){
+            cv::imshow("CSI Camera",img);
+        }
+        int keycode = cv::waitKey(30) & 0xff ;
         if (keycode == 27) break ;
     }
     return 0;

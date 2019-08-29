@@ -7,6 +7,7 @@
 #include <ctime>
 
 #include "oskdevice.hpp"
+#include "oskflags.hpp"
 
 #define DEBUG_SNAPSHOT true
 

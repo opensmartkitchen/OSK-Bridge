@@ -56,6 +56,33 @@ swift build \
   -Xlinker -L/opt/opencv/current/lib \
   -Xlinker -L/usr/local/lib
 
+## NVIDIA Nano
+swift build \
+  -Xcxx -std=gnu++11 \
+  -Xcxx -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++ \
+  -Xlinker -lpthread \
+  -Xlinker -lopencv_core \
+  -Xlinker -lopencv_highgui \
+  -Xlinker -lopencv_videoio \
+  -Xlinker -lopencv_imgproc \
+  -Xlinker -lopencv_imgcodecs \
+  -Xlinker -lopencv_video \
+  -Xlinker -L/opt/opencv/current/lib \
+  -Xlinker -L/usr/local/lib
+  
+swift run \
+    -Xcxx -std=gnu++11 \
+    -Xcxx -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++ \
+    -Xlinker -lpthread \
+    -Xlinker -lopencv_core \
+    -Xlinker -lopencv_highgui \
+    -Xlinker -lopencv_videoio \
+    -Xlinker -lopencv_imgproc \
+    -Xlinker -lopencv_imgcodecs \
+    -Xlinker -lopencv_video \
+    -Xlinker -L/opt/opencv/current/lib \
+    -Xlinker -L/usr/local/lib
+
 ## Ubuntu
 swift build \
     -Xcc -std=c11 \
