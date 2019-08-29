@@ -37,9 +37,11 @@ bool OSKcam::run(OSKcam *me){
 
         if(!OSK_HEADLESS){
             cv::imshow("CSI Camera",img);
+            int keycode = cv::waitKey(30) & 0xff ;
+            if (keycode == 27) break ;
+        } else {
+            std::cout<<"Running in OSK_HEADLESS mode."<<std::endl;
         }
-        int keycode = cv::waitKey(30) & 0xff ;
-        if (keycode == 27) break ;
     }
     return 0;
 }
