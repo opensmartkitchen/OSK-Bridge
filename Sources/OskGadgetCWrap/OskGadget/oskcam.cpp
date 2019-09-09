@@ -3,9 +3,9 @@
 OSKcam::OSKcam(std::string id, int freq) : OSKdevice(id, freq)
 {
     if(OSK_HEADLESS) {
-        std::cout<<"Initializing OSKcam in OSK_HEADLESS mode."<<std::endl;
+        std::cout<<"Initializing OSKcam in OSK_HEADLESS mode.  (OSK_HEADLESS true)"<<std::endl;
     } else {
-        std::cout<<"Initializing OSKcam in windowing mode."<<std::endl;
+        std::cout<<"Initializing OSKcam in windowing mode. (OSK_HEADLESS not true)"<<std::endl;
     }
     m_initOK = initCam();
 }
@@ -24,6 +24,7 @@ bool OSKcam::run(OSKcam *me){
     cv::Mat img;
 
     std::cout << "Hit ESC to exit" << "\n" ;
+    long loopCounter = 0;
     while(true)
     {
         if (!me->getVidCap()->read(img)) {
@@ -41,12 +42,18 @@ bool OSKcam::run(OSKcam *me){
         }
 
         if(!OSK_HEADLESS){
+            if (loopCounter <= 2) {
+                std::cout<<"Running in windowing mode. (OSK_HEADLESS not true)"<<std::endl;
+            }
             cv::imshow("CSI Camera",img);
             int keycode = cv::waitKey(30) & 0xff ;
             if (keycode == 27) break ;
         } else {
-            std::cout<<"Running in OSK_HEADLESS mode."<<std::endl;
+            if (loopCounter <= 2) {
+                std::cout<<"Running in OSK_HEADLESS mode. (OSK_HEADLESS true)"<<std::endl;
+            }
         }
+        loopCounter++;
     }
     return 0;
 }
