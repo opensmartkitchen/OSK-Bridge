@@ -41,6 +41,8 @@ swift build -Xcxx -std=c++11 -Xcxx -stdlib=libc++
 swift build -Xcxx -std=gnu++11
 
 ## macOS
+swift package generate-xcodeproj
+  
 swift build \
   -Xcc -std=c11 \
   -Xcxx -std=c++11 \
@@ -68,8 +70,10 @@ swift build \
   -Xlinker -lopencv_imgcodecs \
   -Xlinker -lopencv_video \
   -Xlinker -L/opt/opencv/current/lib \
-  -Xlinker -L/usr/local/lib
-  
+  -Xlinker -L/usr/local/lib \
+  -Xcxx -DOSK_HEADLESS=true
+
+
 swift run \
     -Xcxx -std=gnu++11 \
     -Xcxx -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++ \
@@ -81,7 +85,8 @@ swift run \
     -Xlinker -lopencv_imgcodecs \
     -Xlinker -lopencv_video \
     -Xlinker -L/opt/opencv/current/lib \
-    -Xlinker -L/usr/local/lib
+    -Xlinker -L/usr/local/lib \
+    -Xcxx -DOSK_HEADLESS=true
 
 ## Ubuntu
 swift build \
