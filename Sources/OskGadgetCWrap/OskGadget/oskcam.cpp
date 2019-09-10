@@ -33,10 +33,10 @@ bool OSKcam::run(OSKcam *me){
         }
 
         if(me->getTakeSnapshot()){
-            std::cout << "Saving Cam Snapshot" << std::endl;
             std::string fileName = me->getSaveDirPath()
                     + std::to_string(me->getTimeSnapshot())
                     + "_image.png";
+            std::cout << "Saving Cam Snapshot: " << fileName << std::endl;
             cv::imwrite(fileName,img);
             me->setTakeSnapshot(false,0);
         }
